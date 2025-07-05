@@ -1,0 +1,70 @@
+# Exercise 4: Creating and Configuring a Maven Project
+
+## Scenario
+
+You need to set up a new Maven project for the library management application and add Spring dependencies.
+
+## Steps Followed
+
+### 1. Create a New Maven Project
+
+- Created a Maven project named `LibraryManagement` using an IDE or manually via directory structure.
+- Initialized the project with a `pom.xml` file in the root directory.
+
+### 2. Add Spring Dependencies in pom.xml
+
+Included the following dependencies in `pom.xml`:
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.3.32</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>5.3.32</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.32</version>
+    </dependency>
+</dependencies>
+3. Configure Maven Plugins
+Configured the Maven Compiler Plugin for Java version 1.8:
+
+xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+Result
+The Maven project was created and successfully configured with the required Spring dependencies and compiler plugin settings. The project is now ready for further development of the library management application using Spring Framework.
+
+FILE STRUCTURE - 
+
+LibraryManagement/
+├── pom.xml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── library/
+│   │   │           ├── AppConfig.java
+│   │   │           ├── Main.java
+│   │   │           └── TestComponent.java
+│   └── resources/
+│       └── applicationContext.xml
+└── README.md
