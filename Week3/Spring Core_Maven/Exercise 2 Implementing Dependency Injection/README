@@ -1,0 +1,69 @@
+# Exercise 2: Implementing Dependency Injection
+
+## Scenario
+
+In the Library Management application, you need to manage the dependencies between the `BookService` and `BookRepository` classes using Spring’s Inversion of Control (IoC) and Dependency Injection (DI) features.
+
+---
+
+## Objective
+
+Use Spring XML configuration to inject `BookRepository` into `BookService` using setter-based dependency injection.
+
+---
+
+## Steps Followed
+
+### 1. Modify the XML Configuration
+
+- Updated the `applicationContext.xml` file to inject `bookRepository` into `bookService` using the `<property>` tag.
+
+```xml
+<bean id="bookRepository" class="com.library.repository.BookRepository" />
+
+<bean id="bookService" class="com.library.service.BookService">
+    <property name="bookRepository" ref="bookRepository" />
+</bean>
+2. Update the BookService Class
+Ensured that the BookService class contains a public setter method for BookRepository.
+
+CODE - 
+
+public class BookService {
+    private BookRepository bookRepository;
+
+    public void setBookRepository(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public void serve() {
+        bookRepository.display();
+    }
+}
+3. Test the Configuration
+Modified the LibraryApp class to remove manual wiring and rely entirely on Spring DI.
+CODE - 
+ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+BookService service = context.getBean("bookService", BookService.class);
+service.serve();
+
+Result
+Spring successfully injected the BookRepository dependency into the BookService class using the configuration defined in applicationContext.xml. The method in BookService called a method from BookRepository as expected, confirming that DI was correctly implemented.
+
+File Structure
+css
+Copy code
+LibraryManagement/
+├── pom.xml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── library/
+│   │   │           ├── LibraryApp.java
+│   │   │           ├── service/
+│   │   │           │   └── BookService.java
+│   │   │           └── repository/
+│   │   │               └── BookRepository.java
+│   └── resources/
+│       └── applicationContext.xml
