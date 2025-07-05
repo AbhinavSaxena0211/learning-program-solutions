@@ -1,0 +1,87 @@
+Hands-on 4: Difference Between JPA, Hibernate, and Spring Data JPA
+Introduction
+JPA, Hibernate, and Spring Data JPA are commonly used technologies for implementing persistence in Java-based applications. While they are related, they operate at different levels of abstraction and serve different purposes. This hands-on explains their roles and differences with code examples.
+
+What is JPA?
+JPA (Java Persistence API) is a Java specification (JSR 338) that defines a standard for object-relational mapping (ORM).
+It provides a set of annotations and interfaces for managing relational data in Java applications.
+JPA is only a specification; it does not provide any implementation.
+Popular JPA implementations include Hibernate, EclipseLink, and OpenJPA.
+
+What is Hibernate?
+Hibernate is a popular ORM framework that provides a complete implementation of the JPA specification.
+It includes additional features like caching, lazy loading, and a custom query language (HQL).
+Developers use Hibernate to map Java classes to database tables and manage database operations.
+Hibernate requires manual session and transaction management unless used with frameworks like Spring.
+
+What is Spring Data JPA?
+Spring Data JPA is a part of the Spring Data project.
+It provides an abstraction over JPA implementations (such as Hibernate).
+It reduces boilerplate code by allowing developers to define interfaces for repository operations.
+It integrates with Spring's dependency injection and transaction management, making it easier to build data access layers.
+
+
+Code Comparison
+1. JPA 
+public void addEmployee(EntityManagerFactory emf, Employee employee) {
+    EntityManager em = emf.createEntityManager();
+    EntityTransaction tx = em.getTransaction();
+
+    try {
+        tx.begin();
+        em.persist(employee);  // JPA standard method
+        tx.commit();
+    } catch (Exception e) {
+        if (tx.isActive()) tx.rollback();
+        e.printStackTrace();
+    } finally {
+        em.close();
+    }
+}
+Uses EntityManager and EntityTransaction
+Pure JPA — no Hibernate-specific classes
+Requires manual setup and transaction handling
+
+2. Hibernate (Direct use of Hibernate API)
+public Integer addEmployee(SessionFactory factory, Employee employee) {
+    Session session = factory.openSession();
+    Transaction tx = null;
+    Integer employeeId = null;
+
+    try {
+        tx = session.beginTransaction();
+        employeeId = (Integer) session.save(employee);  // Hibernate-specific method
+        tx.commit();
+    } catch (HibernateException e) {
+        if (tx != null) tx.rollback();
+        e.printStackTrace();
+    } finally {
+        session.close();
+    }
+
+    return employeeId;
+}
+Uses Session and Transaction from Hibernate
+More boilerplate than JPA
+Tightly coupled to Hibernate
+
+
+ 3. Spring Data JPA 
+// EmployeeRepository.java
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+}
+// EmployeeService.java
+@Service
+public class EmployeeService {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Transactional
+    public void addEmployee(Employee employee) {
+        employeeRepository.save(employee);  // Simplified, no boilerplate
+    }
+}
+No boilerplate: Spring handles everything
+Uses interface-based repositories
+Transactions are managed by Spring
