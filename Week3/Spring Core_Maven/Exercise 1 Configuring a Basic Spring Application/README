@@ -1,0 +1,69 @@
+# Exercise 1: Configuring a Basic Spring Application
+
+## Scenario
+
+Your company is developing a web application for managing a library. You are required to use the Spring Framework to handle backend operations using core Spring features (without Spring Boot).
+
+---
+
+## Project Name
+
+**LibraryManagement**
+
+---
+
+## Steps Followed
+
+### 1. Set Up a Spring Project
+
+- Created a Maven project named `LibraryManagement`.
+- Added Spring Core and Spring Context dependencies in the `pom.xml` file.
+
+### 2. Configure the Application Context
+
+- Created an XML configuration file named `applicationContext.xml` inside the `src/main/resources` directory.
+- Defined two beans in the XML file:
+  - `bookService` — for the service layer
+  - `bookRepository` — for the data access layer
+
+### 3. Define Service and Repository Classes
+
+- Created package: `com.library.service`
+  - Added class: `BookService`
+- Created package: `com.library.repository`
+  - Added class: `BookRepository`
+
+Both classes are plain Java classes (POJOs). `BookService` has a setter method for `BookRepository`.
+
+### 4. Run the Application
+
+- Created a main class `LibraryApp` under the package `com.library`
+- Used `ClassPathXmlApplicationContext` to load the Spring context from `applicationContext.xml`
+- Retrieved the `BookService` and `BookRepository` beans
+- Manually set the `BookRepository` into `BookService` (since this is before dependency injection setup)
+- Called a method in `BookService` to verify the setup
+
+---
+
+## Result
+
+The Spring application context was successfully loaded, and the service-repository structure was verified through manual wiring. The configuration lays the foundation for future Spring DI using XML.
+
+---
+
+## File Structure
+
+LibraryManagement/
+├── pom.xml
+├── src/
+│ ├── main/
+│ │ ├── java/
+│ │ │ └── com/
+│ │ │ └── library/
+│ │ │ ├── LibraryApp.java
+│ │ │ ├── service/
+│ │ │ │ └── BookService.java
+│ │ │ └── repository/
+│ │ │ └── BookRepository.java
+│ └── resources/
+│ └── applicationContext.xml
