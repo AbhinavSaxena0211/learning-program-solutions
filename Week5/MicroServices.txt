@@ -1,0 +1,55 @@
+Microservices is an architectural style that structures an application as a collection of small, independent services, each responsible for a specific business capability. Unlike traditional monolithic applications, where all functionality is packaged into a single deployable unit, microservices break down the system into individual components that can be developed, deployed, and scaled independently.
+
+🔄 Why Microservices?
+In a traditional monolithic system, a failure in one module (e.g., "get account balance") can bring down the entire system — affecting unrelated services like loan or insurance processing. This tight coupling and shared memory space often lead to scalability and maintenance challenges.
+
+Microservices help solve this problem by decentralizing services. For example, a bank application might separate services like:
+
+Accounts
+
+Loans
+
+Insurance
+
+Credit cards
+
+Phone banking
+
+Each service is deployed separately and can fail, scale, or update independently without impacting others.
+
+✅ Advantages of Microservices
+Independence: Services can be developed, deployed, and scaled individually.
+
+Fault isolation: One service crash won’t crash the whole system.
+
+Technology flexibility: Each service can use different tech stacks.
+
+Faster development: Teams can work on services in parallel.
+
+Better scalability: Only the high-demand services need to scale.
+
+⚠️ Challenges of Microservices
+Increased complexity due to distributed systems
+
+Requires proper service discovery, API gateways, and logging
+
+Initial setup and deployment might be more effort than monoliths
+
+🧪 Use Case in This Project
+In this hands-on exercise:
+
+The Account Microservice returns basic account details.
+
+The Loan Microservice returns loan details.
+
+Both services are independent Spring Boot REST APIs with no backend (dummy responses).
+
+They run on separate ports (e.g., 8083 and 8081) to simulate real-world deployment.
+
+This simple setup shows how microservices can be:
+
+Independent
+
+Individually testable
+
+Easily deployable
