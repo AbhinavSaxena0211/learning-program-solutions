@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+  margin: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.heading {
+  color: green;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.navbar button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  background-color: #0056b3;
+}
+
+/* Currency Convertor styles */
+form {
+  display: inline-block;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  width: 100px;
+  font-weight: bold;
+}
+
+.form-row input,
+.form-row textarea {
+  width: 200px;
+  padding: 5px;
+}
+
+.convert-button {
+  background-color: green;
+  color: white;
+  padding: 7px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.convert-button:hover {
+  background-color: darkgreen;
+}
