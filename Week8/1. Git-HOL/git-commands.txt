@@ -1,0 +1,18 @@
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+git config --list
+notepad++
+git config --global core.editor "notepad++ -multiInst -nosession"
+mkdir GitDemo
+cd GitDemo
+git init
+echo "Welcome to GitHub Hands-on" > welcome.txt
+ls
+cat welcome.txt
+git status
+git add welcome.txt
+git commit -m "Initial commit with welcome.txt"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/GitDemo.git
+git push -u origin main

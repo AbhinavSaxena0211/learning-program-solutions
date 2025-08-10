@@ -1,0 +1,41 @@
+cd C:\Users\saxen\GitDemo
+git status
+
+git checkout -b GitWork
+
+echo "<message>Hello from GitWork branch</message>" > hello.xml
+git add hello.xml
+git commit -m "Add hello.xml in GitWork branch"
+
+git checkout main
+
+echo "<message>Hello from main branch</message>" > hello.xml
+git add hello.xml
+git commit -m "Add hello.xml in main branch with different content"
+
+git log --oneline --graph --decorate --all
+
+git diff main..GitWork
+
+# Optional if P4Merge configured:
+# git difftool main..GitWork
+
+git merge GitWork
+
+# Resolve conflict in hello.xml manually or with mergetool
+
+git add hello.xml
+git commit -m "Resolve merge conflict in hello.xml"
+
+echo *.orig >> .gitignore
+git add .gitignore
+git commit -m "Ignore mergetool backup files (*.orig)"
+
+git branch -a
+git branch -d GitWork
+
+# Optional if pushed remotely:
+# git push origin --delete GitWork
+
+git log --oneline --graph --decorate
+git status
