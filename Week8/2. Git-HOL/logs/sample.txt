@@ -1,1 +1,0 @@
-"Sample log inside logs folder." 
