@@ -1,2 +1,0 @@
-Welcome to GitHub Hands-on
-This file was created as part of the Git Hands-on Lab.
